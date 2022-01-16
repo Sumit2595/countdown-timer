@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>My timer</title>
+</head>
+<html>
+  <body>
+    <h1>HIIT Workout timer</h1>
+    <h2>
+      There are two options for setting time one for 1 minute and another for 30
+      seconds
+    </h2>
+
+    <p>Click the button. Wait 3 seconds for alert "Hello".</p>
+    <p id="timer">0</p>
+    <button id="oneMinute" onclick="check1()">Set for one minute</button>
+    <button id="thirtySeconds" onclick="check2()">Set for 30 seconds</button>
+    <script>
+      let myInterval;
+      var i = 1;
+      check1 = () => {
+        myInterval = setInterval(myTimer, 1000, 65);
+        $("#thirtySeconds").attr("disabled", true);
+        function myTimer(j) {
+          if (i <= j) {
+            var t = i.toString();
+            $("#timer").text(t);
+            i++;
+          } else {
+            i = 1;
+            var audio = new Audio("audio_file.wav");
+            audio.play();
+            $("#thirtySeconds").attr("disabled", false);
+            myStopFunction();
+          }
+        }
+      };
+      check2 = () => {
+        myInterval = setInterval(myTimer, 1000, 35);
+        $("#oneMinute").attr("disabled", true);
+        function myTimer(j) {
+          if (i <= j) {
+            var t = i.toString();
+            $("#timer").text(t);
+            i++;
+          } else {
+            i = 1;
+            var audio = new Audio("audio_file.wav");
+            audio.play();
+            $("#oneMinute").attr("disabled", false);
+            myStopFunction();
+          }
+        }
+      };
+      function myStopFunction() {
+        clearInterval(myInterval);
+      }
+    </script>
+  </body>
+</html>
